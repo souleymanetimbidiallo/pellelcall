@@ -1,0 +1,37 @@
+<!-- Page d'abonnement aux offres-->
+{% extends 'base.html' %}
+
+{% block title %}Offres{% endblock %}
+{% block othercss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'meeting/css/offer.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="pricing py-5">
+    <div class="container">
+        <h2 class="display-4 text-center">Liste des offres disponibles </h2>
+        <div class="row mt-3">
+            {% if offers %}
+                {% for offer in offers  %}
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">{{offer.title}}</h5>
+                            <h6 class="card-price text-center">{{offer.price}} €<span class="period">/mois</span></h6>
+                            <hr>
+                            <div class="card-description text-center">
+                                {{offer.description|linebreaks}}
+                            </div>
+                            <a href="{% url 'offer_detail' offer.id %}" class="btn btn-block btn-primary text-uppercase">Souscrire</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Il n'y a pas d'offres </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

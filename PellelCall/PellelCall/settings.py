@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'crispy_forms',
     'meeting',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,7 @@ STATICFILES_DIRS = (
 )
 
 SITE_ID = 1
+
+# Redirect to home URL after login 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

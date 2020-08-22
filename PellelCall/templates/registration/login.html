@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+    <h2>Connexion</h2>
+    {% if form.errors %}
+        <p><strong>Utilisateur inconnu ou mauvais mot de passe</strong>. Veuillez réessayer.</p>
+    {% endif %}
+  
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Votre compte n'a pas accès à cette page. Procéder,
+            veuillez vous connecter avec un compte qui y a accès.</p>
+        {% else %}
+            <p>Connectez-vous pour voir cette page</p>
+        {% endif %}
+    {% endif %}
+  
+    <form method="post" class="" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="mt-2 btn btn-success">Se connecter</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    <p><a href="{% url 'password_reset' %}">Mot de passe oublié?</a></p>
+{% endblock %}

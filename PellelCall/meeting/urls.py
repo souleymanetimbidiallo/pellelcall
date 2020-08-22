@@ -5,4 +5,6 @@ from . import views
 
 urlpatterns = [
     url(r"^$", views.home, name="home"),
+    url(r"^offers/$", views.OfferList.as_view(), name="offer_list"),
+    url(r"^offer/(?P<pk>\d+)$", views.OfferDetailView.as_view(), name="offer_detail"),
 ]

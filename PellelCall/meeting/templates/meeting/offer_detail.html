@@ -1,0 +1,18 @@
+<!-- Page d'abonnement aux offres-->
+{% extends 'base.html' %}
+
+{% block title %}Offres{% endblock %}
+{% block othercss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'meeting/css/offer.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>{{offer.title}}</h1>
+    <p>{{offer.description|linebreaks}}</p>
+    <p>{{offer.price}}€</p>
+{% else %}
+    <p>Vous devez vous connecter d'abord</p>
+{% endif %}    
+{% endblock %}
