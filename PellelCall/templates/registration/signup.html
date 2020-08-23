@@ -1,7 +1,8 @@
-{% extends "base.html" %}
+<!-- templates/signup.html -->
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}Inscription{% endblock %}
 {% block othercss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -17,17 +18,12 @@
         <!-- FORMULAIRE DE CONNEXION -->
         <div class="card card-signin">
           <div class="card-body">
-            <h5 class="card-title text-center">Connexion</h5>
-            {% if form.errors %}
-                <p class="alert alert-danger">Utilisateur inconnu ou mot de passe incorrect!. Veuillez réessayer.</p>
-            {% endif %}
-            <form class="form-signin" method="post" action="{% url 'login' %}">
+            <h5 class="card-title text-center">Inscription</h5>
+            <form class="form-signin" method="post">
                 {% csrf_token %}
-                {{ form.username|as_crispy_field }}
-                {{ form.password|as_crispy_field}}
-                <p class="w-75 ml-auto"><a href="{% url 'password_reset' %}">Mot de passe oublié?</a></p>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Se connecter</button>
-                <p class="mt-2">Vous n'avez pas de compte? <a href="{% url 'signup' %}">Inscrivez-vous</a></p>
+                {{ form|crispy}}
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">S'inscrire</button>
+                <p class="mt-2">Vous avez déjà un compte? <a href="{% url 'login' %}">Connecter vous</a></p>
                 <hr class="my-4">
                 <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Connexion avec Google</button>
                 <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Connexion avec Facebook</button>
@@ -38,4 +34,11 @@
       </div>
     </div>
   </div>
+
+<!--  <h2>Inscription</h2>
+  <form method="post" class="mb-5">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+  </form>-->
 {% endblock %}

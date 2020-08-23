@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Profile{% endblock %}
+{% block othercss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-10">
+            <h1>{{user.username}}</h1>
+        </div>
+    	<div class="col-sm-2">
+            <a href="/media/{{user.profile.avatar}}" class="pull-right">
+                <img class="rounded-circle img-fluid img-avatar" src="/media/{{user.profile.avatar}}">
+            </a>
+        </div>
+    </div>
+    <div class="row">
+  		<div class="col-sm-3">
+        <!--left col-->
+            <div class="list-group">
+                <a href="" class="list-group-item list-group-item-action active">
+                    Mon compte
+                </a>
+                <a href="/accounts/profile/meeting" class="list-group-item list-group-item-action">Conférences</a>
+                <a href="/accounts/profile/offer" class="list-group-item list-group-item-action">Offres</a>
+                <a href="/accounts/profile/edit" class="list-group-item list-group-item-action">Editer profil</a>
+            </div>
+
+          <ul class="list-group mt-2">
+            <li class="list-group-item bg-secondary text-white">Activités <i class="fas fa-address-card fa-1x"></i></li>
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Conférences passées <span class="badge badge-primary badge-pill">14</span>
+            </li>
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Conférences prévues <span class="badge badge-primary badge-pill">2</span>
+            </li>
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Autres <span class="badge badge-primary badge-pill">1</span>
+            </li>
+        </ul>
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">ID personnel: </p>
+                </div>
+                <div class="col-6">
+                    <p>M00{{user.id}}</p>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Nom de famille: </p>
+                </div>
+                <div class="col-6">
+                    <p>{{user.last_name}}</p>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Prénom: </p>
+                </div>
+                <div class="col-6">
+                    <p>{{user.first_name}}</p>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Email: </p>
+                </div>
+                <div class="col-6">
+                    <p>{{user.email}}</p>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Mot de passe: </p>
+                </div>
+                <div class="col-6">
+                    <p>************** <a href="#">Afficher</a></p>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Date de naissance: </p>
+                </div>
+                <div class="col-6">
+                    <p>{{user.profile.birthdate}}</p>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Adresse: </p>
+                </div>
+                <div class="col-6">
+                    <p>{{user.profile.address}}</p>
+                </div>
+           </div>
+           <a href="/accounts/profile/edit" class="btn btn-primary">Editer le profil</a>
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+{% endblock %}
