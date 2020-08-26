@@ -6,6 +6,7 @@ from django.utils import timezone
 
 # Creation des modèles.
 
+#Modèle: Profil (Extensiion du Modèle Utilisateur [User])
 class Profile(models.Model):
     """ Ce modèle élargit le profil de l'utilisateur avec d'autres champs """
     # Fields
@@ -14,13 +15,10 @@ class Profile(models.Model):
     address = models.CharField(max_length=100, blank=True, null=True, verbose_name="adresse")
     avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
     # Metadata
-    class Meta:
-        verbose_name = "profil"
-        ordering = ['user']
 
     def __str__(self):
-        """Retourne une chaîne de caractère pour identifier l'instance de la classe d'objet."""
-        return 'Profile de: {}'.format(self.user.username)
+        """Identifier l'instance de la classe d'objet."""
+        return self.user.username
 
 # Envoi d'un signal pour la création du profil élargit de User
 @receiver(post_save, sender=User)
@@ -33,6 +31,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+#Modèle: OFfre
 class Offer(models.Model):
     """Ce modèle représente une offre à l'utilisateur"""
     title = models.CharField(max_length=255, verbose_name="titre")
@@ -48,6 +47,7 @@ class Offer(models.Model):
         """Retourne une chaine de caractère qui répresente le titre de l'offre"""
         return self.title
 
+#Modèle: Souscription
 class Souscription(models.Model):
     """Ce modèle représente la liaison entre une offre et un utilisateur"""
     user = models.ForeignKey(User, related_name='souscriptions', on_delete=models.SET_NULL, null=True, verbose_name="utilisateur")
@@ -58,6 +58,7 @@ class Souscription(models.Model):
         """Identifie l'offre d'un utilisateur à une date"""
         return "{0} a souscrit à {1} le {2} ".format(self.user.username, self.offer, self.souscriptionDate)
 
+#Modèle: Conférence
 class Conference(models.Model):
     """Ce modèle représente une conférence"""
     title = models.CharField(max_length=255, verbose_name="titre")

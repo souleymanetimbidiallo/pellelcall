@@ -7,8 +7,9 @@ from . import views
 
 
 urlpatterns = [
-    path('signup/', views.SignUp.as_view(), name='signup'), 
-    url(r"^profile/$", TemplateView.as_view(template_name="registration/profile.html")),
-    url(r"^profile/edit$", TemplateView.as_view(template_name="registration/profile_edit.html")),
+    url(r"^signup/$", views.signup, name="signup"),
+    url(r"^update/$", views.update_profile, name="update"),
+    url(r"^profile/$", TemplateView.as_view(template_name="accounts/profile.html")),
+    url(r"^profile/edit$", TemplateView.as_view(template_name="accounts/profile_edit.html")),
 
 ]

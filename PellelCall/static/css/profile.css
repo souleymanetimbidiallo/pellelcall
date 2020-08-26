@@ -1,4 +1,9 @@
+/*CSS pour La page profil*/
+.avatar{
+    width: 15rem;
+    height: 15rem;
+}
 .img-avatar{
-    width: 7rem;
+    width: 5rem;
     height: auto;
 }

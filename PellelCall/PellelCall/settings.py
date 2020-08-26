@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'accounts',
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #Pour les formulaires Bootstrap4
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -132,6 +134,6 @@ STATICFILES_DIRS = (
 
 SITE_ID = 1
 
-# Redirect to home URL after login 
+# Rediriger vers la page d'accueil après connexion 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

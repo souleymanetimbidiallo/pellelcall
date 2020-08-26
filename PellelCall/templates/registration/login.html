@@ -1,7 +1,9 @@
+<!-- Template pour la connexion (login) -->
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
 {% block title %}Connexion{% endblock %}
+
 {% block othercss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -9,33 +11,38 @@
 
 {% block content %}
     <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        {% if user.is_authenticated %}
-            <p>Vous êtes déjà connecté <strong>{{user.username}}</strong></p>
-        {% else %}
-        <!-- FORMULAIRE DE CONNEXION -->
-        <div class="card card-signin">
-          <div class="card-body">
-            <h5 class="card-title text-center">Connexion</h5>
-            {% if form.errors %}
-                <p class="alert alert-danger">Utilisateur inconnu ou mot de passe incorrect!. Veuillez réessayer.</p>
-            {% endif %}
-            <form class="form-signin" method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                {{ form.username|as_crispy_field }}
-                {{ form.password|as_crispy_field}}
-                <p class="w-75 ml-auto"><a href="{% url 'password_reset' %}">Mot de passe oublié?</a></p>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Se connecter</button>
-                <p class="mt-2">Vous n'avez pas de compte? <a href="{% url 'signup' %}">Inscrivez-vous</a></p>
-                <hr class="my-4">
-                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Connexion avec Google</button>
-                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Connexion avec Facebook</button>
-            </form>
-          </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <!-- Verifier si l'utilisateur est déjà connecté -->
+                {% if user.is_authenticated %}
+                    <p>Vous êtes déjà connecté <strong>{{user.username}}</strong></p>
+                {% else %}
+                <!-- Sinon afficher le formulaire de connexion -->
+                    <div class="card card-signin">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Connexion</h5>
+                            {% if form.errors %}
+                                <p class="alert alert-danger">Utilisateur inconnu ou mot de passe incorrect!. Veuillez réessayer.</p>
+                            {% endif %}
+                            <!-- FORMULAIRE DE CONNEXION -->
+                            <form class="form-signin" method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <p class="w-75 ml-auto"><a href="{% url 'password_reset' %}">Mot de passe oublié?</a></p>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Se connecter</button>
+                                <p class="mt-2">Vous n'avez pas de compte? <a href="{% url 'signup' %}">Inscrivez-vous</a></p>
+                                <hr class="my-4">
+                                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit">
+                                    <i class="fab fa-google mr-2"></i> Connexion avec Google
+                                </button>
+                                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">
+                                    <i class="fab fa-facebook-f mr-2"></i> Connexion avec Facebook
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-        {% endif %}
-      </div>
     </div>
-  </div>
 {% endblock %}

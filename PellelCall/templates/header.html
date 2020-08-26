@@ -1,11 +1,13 @@
 <header>
-    <!-- Navigation -->
+    <!-- Menu de Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-lg static-top">
-        <div class="container-fluid">
+        <div class="container-fluid"> 
+            <!-- Logo et nom de l'App -->
             <a class="navbar-brand" href="#">
                 <img src="http://placehold.it/130x50?text=Logo" alt="">
                 <span class="text-light d-none d-md-inline">PellelCall</span>
             </a>
+            <!-- Affichage du menu-->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,6 +31,7 @@
                         <a class="nav-link" href="/meeting/offers/"><i class="fas fa-tags"></i> Offres</a>
                     </li>
                     <li class="nav-item dropdown">
+                        <!-- Affichage d'un sous-menu en fonction du statut de l'utilisateur-->
                         {% if user.is_authenticated %}
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user"></i> Mon espace

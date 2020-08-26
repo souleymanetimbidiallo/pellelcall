@@ -1,27 +1,16 @@
-/* Sticky Footer Classes */
-
+/* classes pour Sticky Footer */
 html, body {
   height: 100%;
 }
-
 #page-content {
   flex: 1 0 auto;
-
 }
-
 #sticky-footer {
   flex-shrink: none;
   margin-top: auto;
 }
 
-/* Other Classes for Page Styling */
-.display-5{
-    font-size:3.0rem;
-    font-weight:300;
-    line-height:1.2
-}
-
-/*SECTION III */
+/*SECTION III dans le fichier home.html*/
 .how-section h4{
     color: #ffa500;
     font-weight: bold;
@@ -30,4 +19,11 @@ html, body {
 .how-section .subheading{
     color: #3931af;
     font-size: 20px;
+}
+
+/* Autres classes pour personnalisation */
+.display-5{
+  font-size:3.0rem;
+  font-weight:300;
+  line-height:1.2
 }
