@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Conférence{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="offset-4 col-4">
+            <h2>Rejoindre une conférence</h2>
+            <form method="post">
+                <div class="form-group text-center">
+                    <label for="search">Entrer le code secret ou le lien personnel</label>
+                    <input type="search" class="form-control" id="search" name="q" placeholder="Entrer le lien">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2 d-block mx-auto">
+                    <i class="fas fa-check"></i> Valider
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
